@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111713">
+  <meta name="description" content="ValixGameMinecraft: avventure, server, survival e una community che cresce un blocco alla volta.">
+  <title>ValixGameMinecraft — Un blocco alla volta</title>
+  <style>
+    :root{
+      --ink:#e9eddf; --muted:#aeb7a6; --paper:#111713; --paper-2:#182019;
+      --acid:#b7e64a; --green:#5fa968; --clay:#d8754f; --line:rgba(233,237,223,.16);
+      --max:1180px; --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Trebuchet MS",Arial,sans-serif;line-height:1.5;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.24;z-index:20;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E")}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    button{font:inherit}
+    .wrap{width:min(calc(100% - 38px),var(--max));margin:auto}
+    .nav{position:fixed;top:14px;left:0;right:0;z-index:30}
+    .nav-in{display:flex;align-items:center;justify-content:space-between;padding:10px 12px 10px 16px;border:1px solid var(--line);background:rgba(17,23,19,.78);backdrop-filter:blur(16px);border-radius:999px;box-shadow:0 16px 48px rgba(0,0,0,.2)}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.04em}
+    .brand img{width:34px;height:34px;border-radius:10px;image-rendering:auto}
+    .links{display:flex;gap:4px;align-items:center}
+    .links a{padding:10px 14px;border-radius:999px;color:var(--muted);font-size:.9rem}
+    .links a:hover{background:rgba(255,255,255,.07);color:var(--ink)}
+    .yt-btn,.hero .cta{background:var(--acid)!important;color:#13180d!important;font-weight:900!important;box-shadow:inset 0 -3px rgba(0,0,0,.16)}
+    .hero{min-height:100svh;display:grid;place-items:end center;padding:130px 0 54px;position:relative;background:linear-gradient(180deg,rgba(10,14,11,.15),var(--paper) 94%),url("https://yt3.googleusercontent.com/QTOlfkl2VJePXhMjzpGSZaYf-M57R_MFm9zbmBzYRmb5RU0hWvF2rtFrk5QllLtNy6osWYpN2A=w1138-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj") center 20%/cover no-repeat}
+    .hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 25%,transparent 0 18%,rgba(10,14,11,.28) 56%),linear-gradient(90deg,rgba(10,14,11,.82),rgba(10,14,11,.08))}
+    .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.3fr .7fr;align-items:end;gap:40px}
+    .eyebrow{display:flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;font-weight:900;color:var(--acid)}
+    .dot{width:9px;height:9px;border-radius:50%;background:var(--acid);box-shadow:0 0 0 5px rgba(183,230,74,.15)}
+    h1{font-size:clamp(3.4rem,9vw,8rem);line-height:.78;letter-spacing:-.09em;margin:24px 0 26px;max-width:900px;text-wrap:balance;text-shadow:0 6px 40px rgba(0,0,0,.4)}
+    h1 em{font-family:Georgia,serif;font-weight:400;color:var(--acid);display:block;transform:rotate(-2deg);letter-spacing:-.07em}
+    .intro{font-size:clamp(1.05rem,2vw,1.35rem);max-width:590px;color:#d9dfd2;margin:0}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 18px;border-radius:12px;border:1px solid var(--line);font-weight:800;background:rgba(17,23,19,.55);backdrop-filter:blur(8px);transition:.2s transform,.2s background}
+    .btn:hover{transform:translateY(-3px);background:rgba(255,255,255,.1)}
+    .note{justify-self:end;width:min(100%,300px);background:#e8dfc8;color:#20241e;padding:22px 22px 25px;transform:rotate(2.6deg);box-shadow:10px 14px 0 rgba(0,0,0,.25);font-family:Georgia,serif;position:relative}
+    .note:before{content:"";position:absolute;width:80px;height:22px;background:rgba(183,230,74,.65);top:-11px;left:50%;transform:translateX(-50%) rotate(-3deg)}
+    .note strong{display:block;font-family:"Trebuchet MS",sans-serif;font-size:2.8rem;line-height:1;color:#52702d;letter-spacing:-.07em}
+    .tape{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--acid);color:#17200e;transform:rotate(-1deg) scale(1.02);position:relative;z-index:5}
+    .tape div{width:max-content;padding:12px 0;font-weight:900;letter-spacing:.08em;text-transform:uppercase;animation:roll 22s linear infinite}
+    @keyframes roll{to{transform:translateX(-50%)}}
+    section{padding:110px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:40px}
+    h2{font-size:clamp(2.4rem,6vw,5.3rem);letter-spacing:-.075em;line-height:.9;margin:0;text-wrap:balance}
+    .section-head p{max-width:380px;color:var(--muted);margin:0}
+    .videos{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:16px;align-items:stretch}
+    .card{position:relative;border:1px solid var(--line);background:var(--paper-2);border-radius:var(--radius);overflow:hidden;min-height:360px;isolation:isolate;transition:.28s transform,.28s border-color}
+    .card:hover{transform:translateY(-7px) rotate(-.4deg);border-color:rgba(183,230,74,.55)}
+    .card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:-2;transition:.4s transform}
+    .card:hover img{transform:scale(1.035)}
+    .card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 18%,rgba(9,12,10,.92) 90%);z-index:-1}
+    .card-copy{height:100%;display:flex;flex-direction:column;justify-content:end;padding:24px}
+    .card .tag{align-self:flex-start;background:var(--acid);color:#18200f;border-radius:99px;padding:6px 9px;font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:auto}
+    .card h3{font-size:clamp(1.35rem,2.4vw,2rem);line-height:1.03;letter-spacing:-.04em;margin:18px 0 8px;text-wrap:balance}
+    .card p{margin:0;color:#c7cec1;font-size:.9rem}
+    .card.featured{min-height:520px}
+    .card.featured h3{font-size:clamp(2rem,4vw,3.2rem)}
+    .world{background:#e5ddc8;color:#20251f;position:relative;overflow:hidden}
+    .world:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(73,100,52,.08) 1px,transparent 1px),linear-gradient(rgba(73,100,52,.08) 1px,transparent 1px);background-size:36px 36px}
+    .world .wrap{position:relative}
+    .world-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:center}
+    .portrait{position:relative;padding:18px;background:#f4ecd8;box-shadow:16px 18px 0 #a9ba74;transform:rotate(-2deg)}
+    .portrait img{width:100%;aspect-ratio:1/1;object-fit:cover;image-rendering:auto}
+    .portrait:after{content:"VALIX ✦";position:absolute;right:18px;bottom:-26px;font-family:Georgia,serif;font-style:italic;font-size:2rem;color:#31422e;transform:rotate(4deg)}
+    .world h2{margin-bottom:26px}
+    .world-copy>p{font-family:Georgia,serif;font-size:clamp(1.2rem,2.2vw,1.7rem);line-height:1.5;margin:0 0 30px;color:#3f493d}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(32,37,31,.18);padding-top:26px;gap:16px}
+    .stat strong{display:block;font-size:2rem;letter-spacing:-.06em;color:#365b39}
+    .stat span{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#687166}
+    .quest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:38px}
+    .quest{padding:25px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.035),transparent);min-height:190px}
+    .quest b{display:grid;place-items:center;width:38px;height:38px;background:var(--clay);color:#fff;border-radius:8px;transform:rotate(-4deg);margin-bottom:28px}
+    .quest h3{font-size:1.35rem;letter-spacing:-.04em;margin:0 0 7px}
+    .quest p{color:var(--muted);margin:0;font-size:.95rem}
+    .community{padding-top:40px}
+    .community-card{display:grid;grid-template-columns:1fr auto;gap:35px;align-items:center;padding:clamp(28px,5vw,65px);border-radius:32px;background:var(--green);color:#102213;position:relative;overflow:hidden}
+    .community-card:after{content:"#";position:absolute;right:22%;top:-100px;font-size:360px;line-height:1;font-weight:900;color:rgba(255,255,255,.1);transform:rotate(8deg)}
+    .community-card h2{max-width:760px;position:relative;z-index:1}
+    .community-card p{font-family:Georgia,serif;font-size:1.2rem;max-width:620px;position:relative;z-index:1}
+    .discord{position:relative;z-index:2;background:#f3ead8;color:#20251f;padding:20px 24px;border-radius:16px;font-weight:900;white-space:nowrap;transform:rotate(2deg);box-shadow:8px 9px 0 rgba(18,45,22,.25)}
+    footer{padding:42px 0 80px}
+    .foot{display:flex;justify-content:space-between;gap:24px;align-items:center;border-top:1px solid var(--line);padding-top:30px;color:var(--muted);font-size:.9rem}
+    .reveal{opacity:0;transform:translateY(22px);transition:.65s ease}
+    .reveal.seen{opacity:1;transform:none}
+    @media(max-width:850px){
+      .links a:not(.yt-btn){display:none}.hero{min-height:auto;padding-top:190px;background-position:60% 20%}.hero-grid,.world-grid{grid-template-columns:1fr}.note{justify-self:start;margin-top:35px}.videos{grid-template-columns:1fr 1fr}.card.featured{grid-column:1/-1}.world-grid{gap:55px}.portrait{max-width:430px}.quest-grid{grid-template-columns:1fr}.community-card{grid-template-columns:1fr;justify-items:start}.discord{white-space:normal}.section-head{align-items:start;flex-direction:column}
+    }
+    @media(max-width:560px){
+      .wrap{width:min(calc(100% - 24px),var(--max))}.brand span{font-size:.86rem}.yt-btn{padding:9px 12px!important}.hero{padding-top:160px}h1{font-size:3.8rem}.videos{grid-template-columns:1fr}.card.featured{grid-column:auto;min-height:430px}.card{min-height:390px}.stats{grid-template-columns:1fr}.community-card{border-radius:22px}.foot{align-items:flex-start;flex-direction:column}section{padding:85px 0}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tape div{animation:none}.reveal{opacity:1;transform:none;transition:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Navigazione principale">
+    <div class="wrap nav-in">
+      <a class="brand" href="#top" aria-label="ValixGameMinecraft, torna all'inizio">
+        <img src="https://yt3.googleusercontent.com/AD5FpXLsvRBm07bCMpiJ_DxFL1e5RxIlMaeoK3e-Cfn1czEUprQbyHAhQIrtClMrkoPzo8Zr=s160-c-k-c0x00ffffff-no-rj" alt="Avatar di ValixGameMinecraft">
+        <span>VALIXGAME</span>
+      </a>
+      <div class="links">
+        <a href="#video">Video</a><a href="#storia">La storia</a><a href="#community">Community</a>
+        <a class="yt-btn" href="https://www.youtube.com/@ValixGameMinecraftOfficial?sub_confirmation=1" target="_blank" rel="noopener">Iscriviti ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Minecraft, amici e caos controllato</div>
+          <h1>Ogni video è una nuova <em>avventura.</em></h1>
+          <p class="intro">Server da scoprire, survival da vivere e momenti che non erano proprio nei piani. Benvenuto nel mondo di Valix.</p>
+          <div class="hero-actions">
+            <a class="btn cta" href="https://www.youtube.com/watch?v=U0aSMm6k8Eg" target="_blank" rel="noopener">▶ Guarda l'ultimo video</a>
+            <a class="btn" href="#video">Esplora il canale ↓</a>
+          </div>
+        </div>
+        <aside class="note" aria-label="Messaggio di Valix">
+          <strong>67</strong>
+          persone sono già entrate nel server. Il prossimo blocco lo metti tu?
+        </aside>
+      </div>
+    </header>
+
+    <div class="tape" aria-hidden="true"><div>VALIXGAME ✦ MINECRAFT ✦ SURVIVAL ✦ SERVER ✦ AVVENTURE ✦ COMMUNITY ✦ VALIXGAME ✦ MINECRAFT ✦ SURVIVAL ✦ SERVER ✦ AVVENTURE ✦ COMMUNITY ✦&nbsp;</div></div>
+
+    <section id="video">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Appena usciti<br>dal banco da lavoro.</h2>
+          <p>Tre episodi, tre storie diverse. Qui non trovi una vetrina perfetta: trovi partite vere, risate e quel momento in cui tutto va storto.</p>
+        </div>
+        <div class="videos">
+          <a class="card featured reveal" href="https://www.youtube.com/watch?v=U0aSMm6k8Eg" target="_blank" rel="noopener">
+            <img src="https://i.ytimg.com/vi/U0aSMm6k8Eg/maxresdefault.jpg" alt="Miniatura del video Nascondino su OrizonMC" loading="lazy">
+            <div class="card-copy"><span class="tag">Ultimo video</span><h3>Nascondino su OrizonMC con 2 trainee e un membro!</h3><p>10:22 · Pubblicato di recente</p></div>
+          </a>
+          <a class="card reveal" href="https://www.youtube.com/watch?v=pCqJ8lwQu6o" target="_blank" rel="noopener">
+            <img src="https://i.ytimg.com/vi/pCqJ8lwQu6o/maxresdefault.jpg" alt="Miniatura del video sul server Minecraft" loading="lazy">
+            <div class="card-copy"><span class="tag">Server</span><h3>Non so cosa fare in questo server Minecraft</h3><p>6:45 · La spontaneità vince</p></div>
+          </a>
+          <a class="card reveal" href="https://www.youtube.com/watch?v=C2YlUw4mmp0" target="_blank" rel="noopener">
+            <img src="https://i.ytimg.com/vi/C2YlUw4mmp0/maxresdefault.jpg" alt="Miniatura del video Un anno di YouTube" loading="lazy">
+            <div class="card-copy"><span class="tag">Traguardo</span><h3>1 anno di YouTube!</h3><p>9:17 · Una storia appena iniziata</p></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="world" id="storia">
+      <div class="wrap world-grid">
+        <div class="portrait reveal">
+          <img src="https://yt3.googleusercontent.com/AD5FpXLsvRBm07bCMpiJ_DxFL1e5RxIlMaeoK3e-Cfn1czEUprQbyHAhQIrtClMrkoPzo8Zr=s800-c-k-c0x00ffffff-no-rj" alt="Avatar di ValixGameMinecraft" loading="lazy">
+        </div>
+        <div class="world-copy reveal">
+          <div class="eyebrow" style="color:#52702d">Un blocco alla volta</div>
+          <h2>Non serve essere enormi per fare rumore.</h2>
+          <p>Valix ha iniziato a pubblicare nell'ottobre 2025. Da allora il canale è diventato un diario di avventure Minecraft: ruoli conquistati, server esplorati, case enormi e amici coinvolti lungo la strada.</p>
+          <div class="stats" aria-label="Numeri del canale">
+            <div class="stat"><strong>107</strong><span>video pubblicati</span></div>
+            <div class="stat"><strong>28.966</strong><span>visualizzazioni</span></div>
+            <div class="stat"><strong>5.000</strong><span>obiettivo face reveal</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head reveal"><h2>Scegli la tua<br>prossima quest.</h2><p>Il canale cambia spesso ritmo, proprio come una partita con gli amici. Entra dalla porta che ti ispira di più.</p></div>
+        <div class="quest-grid">
+          <a class="quest reveal" href="https://www.youtube.com/@ValixGameMinecraftOfficial/videos" target="_blank" rel="noopener"><b>01</b><h3>Avventure & server</h3><p>Nuovi mondi, nuovi ruoli e una buona dose di improvvisazione.</p></a>
+          <a class="quest reveal" href="https://www.youtube.com/@ValixGameMinecraftOfficial/shorts" target="_blank" rel="noopener"><b>02</b><h3>Shorts senza filtro</h3><p>Piccoli momenti, dietro le quinte e vita fuori dai blocchi.</p></a>
+          <a class="quest reveal" href="https://www.youtube.com/@ValixGameMinecraftOfficial/playlists" target="_blank" rel="noopener"><b>03</b><h3>Serie da recuperare</h3><p>Imperocraft, video di avventura e collaborazioni da vedere in ordine.</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="community" id="community">
+      <div class="wrap">
+        <div class="community-card reveal">
+          <div><h2>Il video finisce. La chiacchiera continua.</h2><p>Sul Discord si parla, si gioca e ci si incontra tra un caricamento del mondo e l'altro. Nessun discorso da corporate: entra, saluta e porta la tua piccozza.</p></div>
+          <a class="discord" href="https://discord.gg/Aj3tGTYTc" target="_blank" rel="noopener">Entra su Discord ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot"><span>Costruito per ValixGameMinecraft, con qualche blocco fuori posto.</span><a href="https://www.youtube.com/@ValixGameMinecraftOfficial" target="_blank" rel="noopener">YouTube ↗</a></div>
+  </footer>
+  <script>
+    const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');observer.unobserve(e.target)}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
